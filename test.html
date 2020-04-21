@@ -1,0 +1,1187 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style>
+        .container {
+            background-color: lightblue;
+
+        }
+
+        .container>button {
+            width: 50%;
+            height: 8vh;
+            background: #FFD39B;
+            color: black;
+            word-wrap: break-word;
+            text-align: center;
+        }
+
+    </style>
+    <script type="text/javascript">
+
+        window.TencentVideoTest = {
+            old_getCookieValue: function () {
+                alert(Android.getCookieValue('uin') + "\n"
+                    + Android.getCookieValue('luin') + '\n'
+                    + Android.getCookieValue('lskey') + '\n'
+                    + Android.getCookieValue('skey') + '\n'
+                    + Android.getCookieValue('nickname') + '\n'
+                );
+            },
+            old_getWXCookieValue: function () {
+                alert(Android.getWXCookieValue('open_id') + '\n' +
+                    Android.getWXCookieValue('access_token') + '\n' +
+                    Android.getWXCookieValue('nickname') + '\n' +
+                    Android.getWXCookieValue('headimgurl') + '\n' +
+                    Android.getWXCookieValue('user_id') + '\n' +
+                    Android.getWXCookieValue('session'));
+            },
+            old_qllogs: function () {
+                Android.qllogs('qqlive logs');
+                TenvideoJSBridge.invoke("toast", { 'content': 'console logs ' });
+
+            },
+
+            old_showToast: function () {
+                Android.showToast("toast !!!");
+            },
+
+            old_goPlayer: function () {
+                Android.goPlayer("jjtpt6oql91kgqe", "d00267a54mf", "");
+            },
+
+            old_goDetailsActivity: function () {
+                Android.goDetailsActivity("jjtpt6oql91kgqe", "j0026p7edrp");
+            },
+            old_isAppInstall: function () {
+                var ret = Android.isAppInstall("com.tencent.qqmusic");
+                Android.showToast("com.tencent.qqmusic 版本 = " + ret);
+            },
+            old_launchAPP: function () {
+                Android.launchAPP("com.tencent.qqmusic");
+            },
+
+            old_isWXLogin: function () {
+                var ret = Android.isWXLogin();
+                Android.showToast("isWXLogin " + ret);
+            },
+
+            old_installMtt: function () {
+                Android.installMtt();
+                alert("old_installMtt: ");
+            },
+            old_skipMttGuide: function () {
+                Android.skipMttGuide();
+                alert("old_skipMttGuide: ");
+            },
+
+            old_showShareDlg: function () {
+                Android.showShareDlg();
+            },
+
+            old_getTagInfos: function () {
+                var ret = Android.getTagInfos();
+                Android.showToast("getTagInfos " + ret);
+            },
+
+            old_loginWX: function() {
+                Android.loginWX();
+            },
+
+            old_gotoLoginView:function(){
+                Android.gotoLoginView();
+            },
+            old_showShareDlg:function(){
+                Android.showShareDlg();
+                alert("old_showShareDlg: ");
+            },
+
+            old_openWebView:function(){
+                Android.openWebView("http://m.v.qq.com/index.html");
+            },
+            refreshPage: function () {
+                TenvideoJSBridge.invoke("refreshPage");
+            },
+            shareInfo: function (event) {
+                TenvideoJSBridge.invoke(event, { "title": "jsapi测试", "content": "这是一条jaspi测试", "imgUrl": "http://himg2.huanqiu.com/attachment2010/2014/0926/20140926104434966.jpg", "url": "https://movie.douban.com/subject/5154799/" }, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert(JSON.stringify(jret.result));
+                });
+            }
+            ,
+            printHello: function (content) {
+                document.getElementById("hello_div").innerHTML += "print hello from " + content + "<br/>";
+            }
+            ,
+            printLog: function (content) {
+                document.getElementById("hello_div").innerHTML += content + "<br/>";
+            }
+            ,
+            clickToastBtn: function () {
+                TenvideoJSBridge.invoke("toast", { 'content': 'invoke newtoast' });
+            }
+            ,
+            hideCloseBtn: function () {
+                TenvideoJSBridge.invoke("removeCloseBtn", null);
+            },
+
+            clickPreViewPhotosBtn: function () {
+                TenvideoJSBridge.invoke("preViewPhotos", { 'photopaths': ['http://i.gtimg.cn/qqlive/img/jpgcache/files/qqvideo/w/w7ju7urc1x4w3jc.jpg', 'http://i.gtimg.cn/qqlive/images/still/files/05/05sbd8687.jpg', 'http://i.gtimg.cn/qqlive/images/still/files/04/04clwf587.jpg', 'http://i.gtimg.cn/qqlive/images/still/files/0f/0f7ibsk87.jpg', 'http://i.gtimg.cn/qqlive/images/still/files/0y/0y1b1ov87.jpg', 'http://i.gtimg.cn/qqlive/images/still/files/07/07vld3l87.jpg'] });
+            },
+            clickCopyToClipBoardBtn: function () {
+                TenvideoJSBridge.invoke("copyToClipBoard", { 'content': 'The copy content' });
+                TenvideoJSBridge.invoke("toast", { 'content': '已经写到剪切板,可到输入框进行尝试' });
+            },
+
+            jumpInVideo: function () {
+                TenvideoJSBridge.jumpInVideo(1000 * 60 * 3);
+            },
+
+            hideH5: function () {
+                TenvideoJSBridge.hideH5();
+            },
+
+            showH5: function () {
+                TenvideoJSBridge.showH5();
+            }
+            ,
+
+            closeH5: function () {
+                TenvideoJSBridge.invoke('closeH5');
+            }
+            ,
+            onBodyClick: function () {
+                TenvideoJSBridge.invoke("toast", { "content": "h5 onclick, hide h5" });
+                TenvideoJSBridge.hideH5();
+            }
+            ,
+            testCallback: function () {
+                TenvideoJSBridge.invoke("testCallback", { "content": "i am back!" }, function (msg) {
+                    printLog(msg);
+                    TenvideoJSBridge.invoke("toast", { "content": msg });
+                    alert("testCallback: " + msg);
+                });
+            },
+            testException: function () {
+                TenvideoJSBridge.invoke("testCallback", null, function (msg) {
+                    printLog(msg);
+                    TenvideoJSBridge.invoke("toast", { "content": msg });
+                    alert("testException: " + msg);
+                });
+            },
+            gotoHomepage: function () {
+                TenvideoJSBridge.invoke("openView", { "url": "txvideo://v.qq.com/HomeActivity" }, function () { });
+            },
+
+            isRain: isRain = false,
+            showBackground: function () {
+                this.isRain = !this.isRain;
+                if (this.isRain) {
+                    document.body.style.backgroundImage = "url(./img/rain.gif)";
+                    document.getElementById("btn_rain").innerHTML = 'stopRain';
+                } else {
+                    document.body.style.backgroundImage = "";
+                    document.getElementById("btn_rain").innerHTML = 'rain';
+                }
+            },
+
+            checkApi: function () {
+                console.log("checkApi");
+                TenvideoJSBridge.invoke('checkJsApi', ['getUserInfo', 'showH5', 'getAppInfo'], function (ret) {
+                    console.log("ret:" + ret);
+                    alert(ret.errCode + ": " + ret.errMsg + ": " + JSON.stringify(ret.result));
+                });
+            },
+
+            login: function (type) {
+                TenvideoJSBridge.invoke('actionLogin', { 'type': type }, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert(JSON.stringify(jret.result));
+
+                    if (jret.errCode == 99) {
+                        TenvideoJSBridge.invoke('actionLogin', { 'type': 'tv' }, function (ret) {
+                            var jret = JSON.parse(ret);
+                            alert(JSON.stringify(jret.result));
+                        });
+                    }
+                });
+            }
+            ,
+            checkPermission: function () {
+                TenvideoJSBridge.invoke('checkPermission', { 'permission': 'android.permission.READ_EXTERNAL_STORAGE' }, function (ret) {
+
+                });
+            },
+
+            isFollowedVideo: function () {
+                TenvideoJSBridge.invoke('isFollowedVideo', { 'attentKey': 'attent_type=2&rid=sqmkhre9cpq6t2y' }, function (ret) {
+                    console.log(ret);
+                    alert("isFollowedVideo:: " + ret);
+                });
+            },
+
+            onActionFollow: function () {
+                TenvideoJSBridge.invoke('actionFollow', {
+                    'title': '测试下关注',
+                    'imageUrl': 'sfsafas',
+                    'columnId': '56234',
+                    'coverId': 'ihww0mc4qru6o7b',
+                    'videoId': 'g05020icz7a',
+                    'dataKey': 'attent_type=3&rid=56234'
+                }, function (ret) {
+                    console.log(ret);
+                    alert("onActionFollow:: " + ret);
+                });
+            },
+
+            setClipBoard: function () {
+                TenvideoJSBridge.invoke('setClipBoard', {
+                    'key': 'testClipBoard',
+                    'value':
+                    {
+                        'columnId': '56234',
+                        'coverId': 'ihww0mc4qru6o7b',
+                        'videoId': 'g05020icz7a',
+                        'dataKey': 'attent_type=3&rid=56234'
+                    }
+                }, function (ret) {
+                    var ret = JSON.parse(ret);
+                    alert(JSON.stringify(ret.result));
+                });
+            },
+
+            getUserInfo: function (type) {
+                TenvideoJSBridge.invoke('getUserInfo', { 'type': type }, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert(JSON.stringify(jret.result));
+                });
+            },
+
+            getSimpleMainUserInfo: function (type) {
+                TenvideoJSBridge.invoke('getSimpleMainUserInfo', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert(JSON.stringify(jret.result));
+                });
+            },
+
+            getCookie: function (type) {
+                TenvideoJSBridge.invoke('getCookie', { 'type': type }, function (ret) {
+                    var jret = JSON.parse(ret);
+                    console.log(JSON.stringify(jret));
+                    alert(JSON.stringify(jret.result));
+                });
+            },
+
+            getMainCookie: function (type) {
+                TenvideoJSBridge.invoke('getMainCookie', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert(JSON.stringify(jret.result));
+                });
+            },
+
+            actionPlay: function (param) {
+                TenvideoJSBridge.invoke('actionPlay', param);
+            },
+            getAppInfo: function () {
+                TenvideoJSBridge.invoke('getAppInfo', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert(JSON.stringify(jret.result));
+                });
+            },
+            getDeviceInfo: function () {
+                TenvideoJSBridge.invoke('getDeviceInfo', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert(JSON.stringify(jret.result));
+                });
+            },
+            getMainLoginType: function () {
+                TenvideoJSBridge.invoke('getMainLoginType', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert(JSON.stringify(jret.result));
+                });
+            },
+            getMainUserInfo: function () {
+                TenvideoJSBridge.invoke('getMainUserInfo', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert(JSON.stringify(jret.result));
+                });
+            },
+            openToolsDialog: function () {
+                TenvideoJSBridge.invoke('openToolsDialog', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert(JSON.stringify(jret.result));
+                });
+            },
+            isAppInstalled: function () {
+                TenvideoJSBridge.invoke('isInstalled', { "pkgName": "com.tencent.mm" }, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert("微信isInstalled: " + JSON.stringify(jret.result));
+                });
+            },
+            launchApp: function () {
+                TenvideoJSBridge.invoke('launch3rdApp', { "pkgName": "com.tencent.mm" });
+            }
+            ,
+            cacheVideo: function () {
+                TenvideoJSBridge.invoke('downloadVideo', { "vid": "l0016v835sa", "definition": "hd" });
+            },
+            getNetworkState: function () {
+
+
+                TenvideoJSBridge.invoke('getNetworkState', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert("getNetworkState: " + JSON.stringify(jret.result));
+                    printLog(ret);
+                });
+            },
+            getLocation: function () {
+                TenvideoJSBridge.invoke('getLocation', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert("getLocation: " + JSON.stringify(jret.result));
+                    printLog(ret);
+                });
+            },
+            downloadFile: function () {
+                TenvideoJSBridge.invoke('downloadFile', { "url": "http://img5.douban.com/view/photo/photo/public/p2235250327.jpg" }, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert("downloadFile: " + JSON.stringify(jret.result));
+                });
+            },
+            getPayVip: function () {
+                TenvideoJSBridge.invoke('getPayVip', null, function (ret) {
+                    console.log(ret);
+                    var jret = JSON.parse(ret);
+                    alert("getPayVip: " + JSON.stringify(jret.result));
+                });
+            },
+            getTicketNum: function () {
+                TenvideoJSBridge.invoke('getTicketNum', null, function (ret) {
+                    console.log(ret);
+                    var jret = JSON.parse(ret);
+                    alert("getTicketNum: " + JSON.stringify(jret.result));
+                });
+            },
+            download3rdApp: function () {
+                TenvideoJSBridge.invoke('download3rdApp', {
+                "downloadUrl": "http://gdown.baidu.com/data/wisegame/0aa5a082409eb18c/weixin_1380.apk", "packageName": "com.tencent.mm",
+                 "iconUrl": "http://shp.qpic.cn/ma_icon/0/636fd67826555a9b0d543f0c8f8bbe37/48", "appName": "微信","route":1 }, function (ret) { });
+            },
+
+             obtainDeviceInfo : function() {
+                TenvideoJSBridge.invoke('obtainDeviceInfo', null, function(ret) {
+                    var jret = JSON.parse(ret);
+                    alert("obtainDeviceInfo: " + JSON.stringify(jret.errCode));
+                });
+            },
+
+            openAppStore : function() {
+                TenvideoJSBridge.invoke('openAppStore', {}, function(ret) {
+                    var jret = JSON.parse(ret);
+                    alert("obtainDeviceInfo: " + JSON.stringify(jret.errCode));
+                });
+            },
+
+            gotoCachechoice: function () {
+                TenvideoJSBridge.invoke('goCacheChoice', { "lid": "8280", "cid": "9360gwzc3cv1ypu", "vid": "c0016lia6qv", "videoid": "c0016lia6qv", "title": "这里是缓存选择页" }, function (ret) { });
+            },
+            setPlayerState: function (play) {
+                TenvideoJSBridge.invoke('setPlayerState', play);
+            },
+            goHollywood: function () {
+                TenvideoJSBridge.invoke('openView', { "url": "tenvideo2://?action=20" }, function (ret) { });
+            }
+            ,
+            goHollywood2: function () {
+                location.href = "tenvideo2://?action=20";
+            },
+
+            openLocalFile: function () {
+                TenvideoJSBridge.invoke('saveImage');
+                alert("openLocalFile");
+            },
+
+            gotoDouban: function () {
+                window.location = "http://www.douban.com/photos/album/92041422/";
+            },
+
+            old_getAppId: function () {
+                alert(Android.getAppId());
+            },
+
+            old_getDeviceId: function () {
+                alert(Android.getDeviceId());
+            },
+
+
+
+            onFileChanged: function (input) {
+                console.log(input.files);
+                var reader = new FileReader();
+                var imgURL;
+                reader.onload = function (e) {
+                    imgURL = e.target.result;
+                    console.log(imgURL);
+                    document.getElementById("img1").width = 300;
+                    document.getElementById("img1").height = 300;
+                    document.getElementById("img1").src = imgURL;
+                };
+                reader.readAsDataURL(input.files[0]);
+
+            },
+
+            setNativeStorage: function () {
+                TenvideoJSBridge.invoke('setNativeStorage', { "key1": "value1", "passwd": "345" }, function (ret) {
+                alert("setNativeStorage: " + ret);
+                });
+            },
+            setNativeStorage2: function () {
+                TenvideoJSBridge.invoke('setNativeStorage', { "key9": "九", "key8": "八" }, function (ret) {
+                 alert("setNativeStorage2: " + ret);
+                 });
+            },
+            getNativeStorage: function () {
+                TenvideoJSBridge.invoke('getNativeStorage', { "key": ["key1", "passwd", "name"] }, function (ret) {
+                    TenvideoJSBridge.invoke("toast", { "content": ret });
+                });
+            },
+
+            queryNeedShowAutoInstallTips: function () {
+                TenvideoJSBridge.invoke('autoInstallAction', { "actionType": "queryNeedShowTips" }, function (ret) {
+                    console.log(ret);
+                    var jret = JSON.parse(ret);
+                    var needShow = jret.result.needShowTips; // bool 值，true表示需要展示
+                    alert("queryNeedShowAutoInstallTips: " + JSON.stringify(jret.result));
+                });
+            },
+
+            setAutoInstallTipsShowed: function () {
+                TenvideoJSBridge.invoke('autoInstallAction', { "actionType": "setTipsShowed" }, function (ret) {
+                    console.log(ret);
+                    var jret = JSON.parse(ret);
+                    alert("setAutoInstallTipsShowed: " + JSON.stringify(jret.result));
+                });
+            },
+
+            goAutoInstallSettingPage: function () {
+                TenvideoJSBridge.invoke('autoInstallAction', { "actionType": "goSettingPage" }, function (ret) {
+                    console.log(ret);
+                    var jret = JSON.parse(ret);
+                });
+            },
+
+            scanQRCode: function () {
+                TenvideoJSBridge.invoke('scanQRCode', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert("" + JSON.stringify(jret));
+                });
+            },
+
+            changeAttention: function () {
+                TenvideoJSBridge.invoke('changeAttention', {"attentKey":"attent_type=2&rid=vbb35hm6m6da1wc","attentState":"1"}, function (ret) {
+                   var jret = JSON.parse(ret);
+                    alert("" + JSON.stringify(jret));
+                });
+            },
+
+            getVideoInfo: function () {
+                TenvideoJSBridge.invoke('getVideoInfo',null, function (ret) {
+                   var jret = JSON.parse(ret);
+                    alert("" + JSON.stringify(jret));
+                });
+            },
+
+            jumpInteractVideo: function () {
+                TenvideoJSBridge.invoke('jumpInteractVideo',{ "vid": "123","branchId": "456","chapterId": "789" }, function (ret) {
+                   var jret = JSON.parse(ret);
+                    alert("" + JSON.stringify(jret));
+                });
+            },
+
+            setSeekTime: function () {
+                TenvideoJSBridge.invoke('setSeekTime',10.33, function (ret) {
+                   var jret = JSON.parse(ret);
+                    alert("" + JSON.stringify(jret));
+                });
+            },
+
+            doVibratorLong: function () {
+                TenvideoJSBridge.invoke('doVibratorLong');
+            },
+
+             doVibratorShort: function () {
+                TenvideoJSBridge.invoke('doVibratorShort');
+            },
+
+            openPushSwitch: function () {
+                TenvideoJSBridge.invoke('openPushSwitch', { "enable": true }, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert("" + JSON.stringify(jret));
+                });
+            },
+
+            getPushSwitch: function () {
+                TenvideoJSBridge.invoke('getPushSwitch', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert("" + JSON.stringify(jret));
+                });
+            },
+
+            presentGiftPage: function () {
+                TenvideoJSBridge.invoke('openView', {
+                    'url': 'txvideo://v.qq.com/PropsPresentListActivity?dataKey=curtype%3d25%26curid%3d10001&actorId=246977827&actorName=%e5%bc%a0%e6%99%8f%e6%81%ba&idType=6&faceImageUrl=https%3a%2f%2fpuui.qpic.cn%2ftlivehead%2fDhduwiaBa7lefFricgAzg2NXzpwc6vibHATkpznowAJVJhIZ0AEqlGTgw%2f400&desc=%e8%bf%99%e6%98%af%e6%8f%8f%e8%bf%b0&unit=%e8%bf%99%e6%98%af%e7%a4%bc%e7%89%a9%e5%8d%95%e4%bd%8d&shareUrl=3g.v.qq.com&shareTitle=%e6%b5%8b%e8%af%95%e5%88%86%e4%ba%ab%e6%a0%87%e9%a2%98&shareSubTitle=%e6%b5%8b%e8%af%95%e5%88%86%e4%ba%ab%e5%89%af%e6%a0%87%e9%a2%98&shareImageUrl=https%3a%2f%2fpuui.qpic.cn%2ftlivehead%2fDhduwiaBa7lefFricgAzg2NXzpwc6vibHATkpznowAJVJhIZ0AEqlGTgw%2f400&likeNumber=666'
+                });
+            },
+
+            presentGiftPage: function () {
+                TenvideoJSBridge.invoke('openView', {
+                    'url': 'txvideo://v.qq.com/PropsPresentListActivity?dataKey=curtype%3d25%26curid%3d10001&actorId=246977827&actorName=%e5%bc%a0%e6%99%8f%e6%81%ba&idType=6&faceImageUrl=https%3a%2f%2fpuui.qpic.cn%2ftlivehead%2fDhduwiaBa7lefFricgAzg2NXzpwc6vibHATkpznowAJVJhIZ0AEqlGTgw%2f400&desc=%e8%bf%99%e6%98%af%e6%8f%8f%e8%bf%b0&unit=%e8%bf%99%e6%98%af%e7%a4%bc%e7%89%a9%e5%8d%95%e4%bd%8d&shareUrl=3g.v.qq.com&shareTitle=%e6%b5%8b%e8%af%95%e5%88%86%e4%ba%ab%e6%a0%87%e9%a2%98&shareSubTitle=%e6%b5%8b%e8%af%95%e5%88%86%e4%ba%ab%e5%89%af%e6%a0%87%e9%a2%98&shareImageUrl=https%3a%2f%2fpuui.qpic.cn%2ftlivehead%2fDhduwiaBa7lefFricgAzg2NXzpwc6vibHATkpznowAJVJhIZ0AEqlGTgw%2f400&likeNumber=666'
+                });
+            },
+
+            addShortcut: function () {
+                TenvideoJSBridge.invoke('addShortcut', { "title": "爱玩游戏", "iconUrl": "http://i.gtimg.cn/qqlive/images/20160715/me_icon_game.png", "actionUrl": "txvideo://v.qq.com/Html5Activity?url=https%3A%2F%2Fiwan.qq.com%2Fm%2Fvadr%2Fhotgames.htm%3Fbusiness%3Dgame%26ADTAG%3Dtxsp.grzx-2.jdyx-1" }, function (ret) {
+                    console.log(ret);
+                    var jret = JSON.parse(ret);
+                });
+            },
+
+            getMarketChannelID: function () {
+                TenvideoJSBridge.invoke('getMarketChannelID', null, function (ret) {
+                    console.log(ret);
+                    alert("" + ret);
+                });
+            },
+            getInstallUserState: function () {
+                TenvideoJSBridge.invoke('getInstallUserState', { "new_user_valide_duration": 5 }, function (ret) {
+                    console.log(ret);
+                    alert("" + ret);
+                });
+            }
+            ,
+            getPhoneInfo: function () {
+                TenvideoJSBridge.invoke('getPhoneInfo', null, function (ret) {
+                    console.log(ret);
+                    alert("" + ret);
+                });
+            },
+              purchaseDiamond:function () {
+              	TenvideoJSBridge.invoke("purchaseDiamond", {"count":1,"price":1.25,"iapProductID":"test","aid":"V0$$1:21$2:8$3:6.3.5$4:302$12:channerl$13:HLW_200"},function (ret) {
+              		console.log(ret);
+              		alert("" + ret);
+              	});
+              },
+            startRecordVoice: function () {
+                TenvideoJSBridge.invoke("startRecordVoice", null);
+            }
+            ,
+            stopRecordVoice: function () {
+                TenvideoJSBridge.invoke("stopRecordVoice", null);
+            },
+
+            shareUrl2DokiDialog: function () {
+                TenvideoJSBridge.invoke("setMoreInfo",  {"hasRefresh":false,"hasShare":true,"hasFollow":false,
+                    "shareInfo":{"title":"腾讯视频草场地","subTitle":"种草有趣周边~","singleTitle":"腾讯视频草场地","content":"种草有趣周边~","contentTail":"","imageUrl":"http:\/\/pusp.qpic.cn\/imongo\/0\/1_526775866_1516176971405\/0","url":"https:\/\/mall.video.qq.com\/home","style":1,"picList":[],
+                        "shareDokiInfo":{"dokiId" : "10565","shareContent" : "种草有趣周边~",
+			                "shareUrlInfo":{"url" : "https:\/\/mall.video.qq.com\/home","urlTitle" : "腾讯视频草场地","linkImgUrl" : "http:\/\/pusp.qpic.cn\/imongo\/0\/1_526775866_1516176971405\/0"},
+			                "topicInfos" : [
+			                    {"id" : "2_2032", "text" : "高圆圆测试话题"}
+			                ]
+			            }
+		            }
+                });
+                TenvideoJSBridge.invoke('openToolsDialog', null);
+            }
+            ,
+            shareImg2DokiDialog: function () {
+                TenvideoJSBridge.invoke("setMoreInfo", {"hasRefresh":false,"hasShare":true,"hasFollow":false,
+                    "shareInfo":{"title":"腾讯视频草场地","subTitle":"种草有趣周边~","singleTitle":"腾讯视频草场地","content":"种草有趣周边~","contentTail":"","imageUrl":"http:\/\/pusp.qpic.cn\/imongo\/0\/1_526775866_1516176971405\/0","url":"https:\/\/mall.video.qq.com\/home","style":1,"picList":[],
+                        "shareDokiInfo" :{"dokiId" : "","shareContent" : "种草有趣周边~",
+			                "shareImageInfo" :{"imgUrl" : "http:\/\/pusp.qpic.cn\/imongo\/0\/1_526775866_1516176971405\/0","linkUrl" : "https:\/\/mall.video.qq.com\/home", "linkUrlText" : "腾讯视频草场地"},
+			                "topicInfos" : [
+			                    {"id" : "2_2032", "text" : "高圆圆测试话题"}
+			                ]
+			            }
+		            }
+                });
+                TenvideoJSBridge.invoke('openToolsDialog', null);
+            }
+            ,
+            shareUrl2DokiButton: function () {
+                TenvideoJSBridge.invoke('shareDoki', {"dokiId" : "","shareContent" : "种草有趣周边~",
+			        "shareUrlInfo" : {"url" : "https:\/\/mall.video.qq.com\/home","urlTitle" : "腾讯视频草场地","linkImgUrl" : "http:\/\/pusp.qpic.cn\/imongo\/0\/1_526775866_1516176971405\/0"},
+			        "topicInfos" : [
+			                    {"id" : "2_2032", "text" : "高圆圆测试话题"}
+			        ]
+			    });
+            }
+            ,
+            shareImg2DokiButton: function () {
+                TenvideoJSBridge.invoke('shareDoki', {"dokiId" : "10565","shareContent" : "种草有趣周边~",
+			                "shareImageInfo" : {"imgUrl" : "http:\/\/pusp.qpic.cn\/imongo\/0\/1_526775866_1516176971405\/0","linkUrl" : "https:\/\/mall.video.qq.com\/home", "linkUrlText" : "腾讯视频草场地"},
+			                "topicInfos" : [
+			                    {"id" : "2_2032", "text" : "高圆圆测试话题"}
+			                ]
+			    });
+            }
+            ,
+            feedActionNotify: function () {
+                TenvideoJSBridge.invoke("feedActionNotify", {"actionType": 99, "feedID": "5926085591040"}, function() {
+                    alert("invoke feedActionNotify success");
+                });
+            }
+            ,
+            getMsgCount: function () {
+                TenvideoJSBridge.invoke("getMsgCount", null, function (msg) {
+                    alert("getMsgCount: " + msg);
+                });
+            }
+            ,
+            configStatusBar: function () {
+                var color = document.getElementById("color_selector").value;
+                var temp = document.getElementById("text_color_selector").value;
+                if (temp == "1") {
+                    TenvideoJSBridge.invoke("configStatusBar", {"backgourndColor": color, "titleColor":1}, function (msg) {
+                        alert("configStatusBar: " + color);
+                    });
+                }
+                else if (temp == "2") {
+                    TenvideoJSBridge.invoke("configStatusBar", {"backgourndColor": color, "titleColor":2}, function (msg) {
+                        alert("configStatusBar: " + color);
+                    });
+                } else {
+                    TenvideoJSBridge.invoke("configStatusBar", {"backgourndColor": color, "titleColor":0}, function (msg) {
+                        alert("configStatusBar: " + color);
+                    });
+                }
+            }
+            ,
+            bindPhoneNumberFinish: function () {
+                TenvideoJSBridge.invoke("bindPhoneNumberFinish", { "result": "0" }, function (msg) {
+                    alert("bindPhoneNumberFinish: " + msg);
+                });
+            }
+            ,
+
+            fanTuanFollowAdd: function () {
+                TenvideoJSBridge.on("onFanTuanFollowStated", function (ret) {
+                     alert("onFanTuanFollowStated: " + ret);
+                });
+                TenvideoJSBridge.invoke("fanTuanFollow", { "id": "10181","isFollowed":1}, function (msg) {
+                    alert("fanTuanFollow: " + msg);
+                });
+            }
+            ,
+
+            fanTuanFollowCancel: function () {
+                TenvideoJSBridge.on("onFanTuanFollowStated", function (ret) {
+                     alert("onFanTuanFollowStated: " + ret);
+                });
+                TenvideoJSBridge.invoke("fanTuanFollow", { "id": "10181","isFollowed":0}, function (msg) {
+                    alert("fanTuanFollow: " + msg);
+                });
+            },
+
+            getCookie2: function () {
+                    alert("getCookie: " + JSON.stringify(document.cookie));
+            },
+
+            refreshLogin: function () {
+                TenvideoJSBridge.on("onLoginRefreshFinish", function (ret) {
+                     alert("onLoginRefreshFinish: " +  JSON.stringify(document.cookie));
+                });
+                TenvideoJSBridge.invoke("refreshLogin", null, function (msg) {
+                });
+            },
+
+            subscribeWechatMessage: function(){
+                TenvideoJSBridge.invoke('subscribeWechatMessage',{"scene":1000,"templateID":"jEQoBOFZO4m7GJPzJJ9aCbJUGpzSIn-YXab4M1WcQT0","reserved":"hello"}, function(msg){
+                    console.log(JSON.stringify(msg));
+                    alert('subscribeMessage ' + JSON.stringify(msg));
+                    TenvideoJSBridge.invoke("toast", { "content": JSON.stringify(msg) });
+
+                });
+            },
+
+            shareWeixinTimeline:function(){
+               TenvideoJSBridge.invoke('saveImage',{"url":"http://imgsrc.baidu.com/imgad/pic/item/8b82b9014a90f6037cb445933312b31bb151edda.jpg","needSaveToAlbum":false},function(ret){
+
+                    console.log(JSON.stringify(ret));
+                    let obj = JSON.parse(ret);
+                    let filePath = obj.result.filePath;
+                    TenvideoJSBridge.invoke('shareWeixinTimeline',{'imageUrl':filePath,
+                    'isShareImageOnly':true,
+                    'title':'测试标题',
+                    'content':"测试内容"
+                    },function(ret){
+                            console.log(ret);
+
+                    });
+
+               });
+            },
+             shareQQUser:function(){
+               TenvideoJSBridge.invoke('saveImage',{"url":"http://imgsrc.baidu.com/imgad/pic/item/8b82b9014a90f6037cb445933312b31bb151edda.jpg","needSaveToAlbum":false},function(ret){
+
+                    console.log(JSON.stringify(ret));
+                    let obj = JSON.parse(ret);
+                    let filePath = obj.result.filePath;
+                    TenvideoJSBridge.invoke('shareQQUser',{'imageUrl':filePath,
+                    'isShareImageOnly':true,
+                    'title':'测试标题',
+                    'content':"测试内容"
+                    },function(ret){
+                            console.log(ret);
+
+                    });
+
+               });
+            },
+             shareQzone:function(){
+               TenvideoJSBridge.invoke('saveImage',{"url":"http://imgsrc.baidu.com/imgad/pic/item/8b82b9014a90f6037cb445933312b31bb151edda.jpg","needSaveToAlbum":false},function(ret){
+
+                    console.log(JSON.stringify(ret));
+                    let obj = JSON.parse(ret);
+                    let filePath = obj.result.filePath;
+                    TenvideoJSBridge.invoke('shareQzone',{'imageUrl':filePath,
+                    'isShareImageOnly':true,
+                    'title':'测试标题',
+                    'content':"测试内容"
+                    },function(ret){
+                            console.log(ret);
+
+                    });
+
+               });
+            },
+
+               shareTxWeibo:function(){
+               TenvideoJSBridge.invoke('saveImage',{"url":"http://imgsrc.baidu.com/imgad/pic/item/8b82b9014a90f6037cb445933312b31bb151edda.jpg","needSaveToAlbum":false},function(ret){
+
+                    console.log(JSON.stringify(ret));
+                    let obj = JSON.parse(ret);
+                    let filePath = obj.result.filePath;
+                    TenvideoJSBridge.invoke('shareTxWeibo',{'imageUrl':filePath,
+                    'isShareImageOnly':true,
+                    'title':'测试标题',
+                    'content':"测试内容"
+                    },function(ret){
+                            console.log(ret);
+
+                    });
+
+               });
+            },
+
+               shareWeixinUser:function(){
+               TenvideoJSBridge.invoke('saveImage',{"url":"http://imgsrc.baidu.com/imgad/pic/item/8b82b9014a90f6037cb445933312b31bb151edda.jpg","needSaveToAlbum":false},function(ret){
+
+                    console.log(JSON.stringify(ret));
+                    let obj = JSON.parse(ret);
+                    let filePath = obj.result.filePath;
+                    TenvideoJSBridge.invoke('shareWeixinUser',{'imageUrl':filePath,
+                    'isShareImageOnly':true,
+                    'title':'测试标题',
+                    'content':"测试内容"
+                    },function(ret){
+                            console.log(ret);
+
+                    });
+
+               });
+            },
+
+            saveImage:function(){
+               TenvideoJSBridge.invoke('saveImage',{"url":"http://imgsrc.baidu.com/imgad/pic/item/8b82b9014a90f6037cb445933312b31bb151edda.jpg","needSaveToAlbum":true},function(ret){
+
+                    console.log(JSON.stringify(ret));
+
+               });
+            },
+
+
+            setRequestedOrientation0: function(){
+                TenvideoJSBridge.invoke('setRequestedOrientation',{"orientation":0},function(ret){
+                   console.log(JSON.stringify(ret));
+                });
+
+            },
+              setRequestedOrientation1: function(){
+                TenvideoJSBridge.invoke('setRequestedOrientation',{"orientation":1},function(ret){
+                    console.log(JSON.stringify(ret));
+                });
+
+            },
+            setRequestedOrientation2: function(){
+                TenvideoJSBridge.invoke('setRequestedOrientation',{"orientation":2},function(ret){
+                   console.log(JSON.stringify(ret));
+                });
+
+            },
+
+            launchMiniProgram:function(){
+               TenvideoJSBridge.invoke('launchMiniProgram',{"userName":"gh_1f8558c3a9df","path":"pages/land?app_id=W2325857&user_id=6B79D57BE6672D8E78C07711AB32BC22&ext_data=%7B%22video_user_type%22%3A3%2C%22video_user_id%22%3A%226B79D57BE6672D8E78C07711AB32BC22%22%2C%22video_appid%22%3A%22101483052%22%2C%22video_access_token%22%3A%222cXRPrwD9d4FcCZmRq2gWBJAsVKUxKuxHa5mp-evFBDUXziYd7FF0dFJg59gnZ-Et3WarNvCeguoPe-fNVF8EyJL4IYgWLSfWgoLU2GAUm0%22%7D&user_score=700&sign=2A4B4F3DA90C638ECBBD0FB56672D04469A1A8ED&nonce_str=cc0f640b1b914126aed2356c51adfd37&dest=receive&mcode=undefined&ptag=undefined","miniprogramType":2},function(ret){
+                    console.log(JSON.stringify(ret));
+               });
+            },
+
+
+            getUiSize:function(){
+               TenvideoJSBridge.invoke('getUiSize',{},function(ret){
+                    console.log(JSON.stringify(ret));
+               });
+            },
+
+            getDarkMode:function(){
+                 TenvideoJSBridge.invoke('getDarkMode',{},function(ret){
+                    console.log(JSON.stringify(ret));
+               });
+            },
+
+            setH5Tag:function(){
+                 TenvideoJSBridge.invoke('setH5Tag',{"tag":"vip.fadian.refresh"},function(ret){
+                    console.log(JSON.stringify(ret));
+               });
+            },
+
+            registerOnUiSizeChanged:function(){
+                TenvideoJSBridge.invoke('registerUiSizeChange',{},function(ret){
+                    console.log(JSON.stringify(ret));
+                });
+            },
+
+             writeLog:function(){
+               TenvideoJSBridge.invoke('writeLog',{"content":"h5 cookie:xxxxxxxxxxxx"},function(ret){
+               });
+            },
+
+
+
+            hideSystemBars:function(){
+               TenvideoJSBridge.invoke('hideSystemBars',null,function(ret){
+                    console.log(JSON.stringify(ret));
+               });
+            },
+
+             showSystemBars:function(){
+               TenvideoJSBridge.invoke('showSystemBars',null,function(ret){
+                    console.log(JSON.stringify(ret));
+               });
+            },
+            showCustomDlg:function(){
+                var param = {"taskId":"12345","top":[{"iconId":"report","text":"举报","iconUrl":"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2132360545,1400348353&fm=26&gp=0.jpg"},{"iconId":"delete","text":"删除","iconUrl":"http://wx.qlogo.cn/mmhead/Q3auHgzwzM5z8LuiaqyILZRJqMTSWz3bWchjy1vZOU9fMKlSibp6jSHQ/0"}]};
+                TenvideoJSBridge.invoke('showCustomDlg',param,function(ret){
+                    console.log(JSON.stringify(ret));
+               });
+            },
+            startRecordScreen: function(){
+                TenvideoJSBridge.invoke('startRecordScreen',{},function(ret){
+                    alert("startRecordScreen: " + JSON.stringify(ret));
+                });
+
+            },
+            stopRecordScreen: function(){
+            TenvideoJSBridge.invoke('stopRecordScreen',{},function(ret){
+                    alert("stopRecordScreen: " + JSON.stringify(ret));
+                });
+            },
+             testOpenLocalData: function(){
+                    var xhr = new XMLHttpRequest;
+                    xhr.onload = function(){
+                        var txt = xhr.responseText;
+                        alert(txt);
+                    }
+                    xhr.open('GET','file:///data/data/com.tencent.qqlive/shared_prefs/Access_Preferences.xml');
+                    xhr.send(null);
+            },
+
+            testDoPRreport: function(){
+               var param = {"reportKey":"12345","reportParams":"dateKey=1111&&taskid=11","eventName":"weishi_h5"};
+               TenvideoJSBridge.invoke('doPRMTAReport',param,function(ret){
+                    console.log(JSON.stringify(ret));
+               });
+            },
+
+            reverseSaveImgForbidden: function () {
+                var temp = document.getElementById("img1").getAttribute("forbidden-save");
+                console.log(temp);
+                if (temp == "true") {
+                    document.getElementById("img1").setAttribute("forbidden-save", "false");
+                } else {
+                    document.getElementById("img1").setAttribute("forbidden-save", "true");
+                }
+            },
+
+            checkAppUpdate: function () {
+                TenvideoJSBridge.invoke('checkAppUpdate', null, function (msg) {
+                });
+            },
+
+            getVideoDetailHeight: function () {
+                TenvideoJSBridge.invoke('getVideoDetailHeight', null, function (msg) {
+                    console.log(JSON.stringify(msg));
+                    TenvideoJSBridge.invoke("toast", { "content": JSON.stringify(msg) });
+                });
+            }
+        }
+
+        function createButtonsFromFunction(func, name) {
+            if (func != null && func instanceof Function) {
+                let argslength = func.length;
+                if (argslength == 0) {
+                    var ele = document.createElement('button');
+                    ele.innerText = name;
+                    ele.onclick = func;
+                    return [ele];
+                } else {
+                    let list = [];
+                    switch (name) {
+                        case "login":
+                            let elementqq = document.createElement("button");
+                            elementqq.onclick = () => {
+                                func('qq');
+                            };
+                            elementqq.innerText = func.name + "qq";
+                            let elementwx = document.createElement("button");
+                            elementwx.onclick = () => {
+                                func('wx');
+                            };
+                            elementwx.innerText = func.name + "wx";
+                            let elementtv = document.createElement("button");
+                            elementtv.onclick = () => {
+                                func('tv');
+                            };
+                            elementtv.innerText = func.name + "tv";
+                            list = [elementqq, elementtv, elementwx];
+                            break;
+                        case "getUserInfo":
+                            var ele = document.createElement("button");
+                            ele.onclick = () => {
+                                func(['qq', 'wx']);
+                            };
+                            ele.innerText = func.name;
+                            list = [ele];
+                            break;
+                        case "getSimpleMainUserInfo":
+                            var ele = document.createElement("button");
+                            ele.onclick = () => {
+                                func(['qq', 'wx']);
+                            };
+                            ele.innerText = func.name;
+                            list = [ele];
+                            break;
+                        case "getCookie":
+                            var ele = document.createElement("button");
+                            ele.onclick = () => {
+                                func(['qq', 'wx', 'tv']);
+                            };
+                            ele.innerText = func.name;
+                            list = [ele];
+                            break;
+                        case "onFileChanged":
+                            break;
+                    }
+                    return list;
+                }
+            }
+            return null;
+        }
+
+        if (typeof TenvideoJSBridge == "object") {
+            callback();
+        } else {
+            if (document.addEventListener) {
+                document.addEventListener("onTenvideoJSBridgeReady", callback, false);
+            } else if (document.attachEvent) {
+                document.attachEvent("onTenvideoJSBridgeReady", callback);
+            }
+        }
+
+
+
+        function callback() {
+            isTenvideoJSBridgeReady = true;
+
+            console.log(window.TenvideoJSBridge);
+            // init();
+            TenvideoJSBridge.invoke("toast", { "content": "jsapi is ok!" });
+            TenvideoJSBridge.on("openvideo", function () {
+                TenvideoJSBridge.toast("openvideo");
+            });
+            TenvideoJSBridge.on("on_orientation_change", function () {
+                TenvideoJSBridge.toast("orientation_change");
+            });
+            TenvideoJSBridge.on("onShareQQUser", function () {
+                alert("onShareQQUser");
+                shareInfo("shareQQUser");
+            });
+            TenvideoJSBridge.on("onShareQZone", function () {
+                alert("onShareQZone");
+                shareInfo("shareQzone");
+            });
+            TenvideoJSBridge.on("onShareSinaWeibo", function () {
+                alert("onShareSinaWeibo");
+                shareInfo("shareSinaWeibo");
+            });
+            TenvideoJSBridge.on("onShareTXWeibo", function () {
+                alert("onShareTXWeibo");
+                shareInfo("shareTxWeibo");
+            });
+            TenvideoJSBridge.on("onShareWeixinTimeline", function () {
+                alert("onShareWeixinTimeline");
+                shareInfo("shareWeixinTimeline");
+            });
+            TenvideoJSBridge.on("onShareWeixinUser", function () {
+                alert("onShareWeixinUser");
+                shareInfo("shareWeixinUser");
+            });
+            TenvideoJSBridge.on("onShareVideoCircle", function () {
+                alert("onShareVideoCircle");
+                shareInfo("shareVideoCircle");
+            });
+            TenvideoJSBridge.on("onRefresh", function () {
+                alert("onRefresh");
+                refreshPage();
+            });
+            TenvideoJSBridge.on("onFollow", function () {
+                alert("onFollow");
+            });
+            TenvideoJSBridge.on("onAppEnterBackground", function () {
+                alert("onAppEnterBackground");
+            });
+            TenvideoJSBridge.on("onAppEnterForeground", function () {
+                alert("onAppEnterForeground");
+            });
+            TenvideoJSBridge.on("onShareFinish", function (ret) {
+                var jret = JSON.parse(ret);
+                alert("onShareFinish " + JSON.stringify(jret.result));
+            });
+            TenvideoJSBridge.on("onActionLoginFinish", function (ret) {
+                alert("onActionLoginFinish:: " + ret);
+            });
+            TenvideoJSBridge.on("onKeyboardChange", function (ret) {
+                alert("onKeyboardChange " + ret.height);
+
+            });
+
+            TenvideoJSBridge.on("onPermissionCheckCallBack", function (ret) {
+                alert("onPermissionCheckCallBack:: " + ret);
+                console.log(ret);
+            });
+            TenvideoJSBridge.on("onActionFollowFinish", function (ret) {
+                console.log(ret);
+            });
+            TenvideoJSBridge.on("webViewClosed", function (ret) {
+                alert("onwebViewClosed");
+
+            });
+
+
+            TenvideoJSBridge.on("onPageDisappear", function () {
+                TenvideoJSBridge.invoke("toast", { "content": "onPageDisappear!" });
+            });
+
+            TenvideoJSBridge.on("onPageAppear", function () {
+                TenvideoJSBridge.invoke("toast", { "content": "onPageAppear!" });
+            });
+
+            TenvideoJSBridge.on('onUiSizeChanged',function(ret){
+                  console.log("onUiSizeChanged"+ JSON.stringify(ret));
+            });
+
+            TenvideoJSBridge.on('onDarkModeChange',function(ret){
+                  console.log("onDarkModeChange"+ JSON.stringify(ret));
+            });
+
+            TenvideoJSBridge.invoke("setMoreInfo", { "hasRefresh": true, "hasShare": true, "shareInfo": { "title": "title", "subTitle": "subTitle", "singleTitle": "this is singleTitle", "contentTail": "this is contentTail", "url": "http://v.qq.com" } });
+            setTimeout(() => {
+                init();
+            }, 0);
+        }
+
+        function init() {
+
+            let old_container = document.getElementById('old_container');
+            for (let key in TencentVideoTest) {
+                if (key != null && TencentVideoTest[key] instanceof Function && key.indexOf('old_')>=0) {
+                    let list = createButtonsFromFunction(TencentVideoTest[key], key);
+                    console.log(" element size " + list.length);
+                    for (let ele of list) {
+                        if (ele != null) {
+                            old_container.appendChild(ele);
+                        }
+                    }
+                }
+            }
+            let new_container = document.getElementById('new_container');
+             for (let key in TencentVideoTest) {
+                if (key != null && TencentVideoTest[key] instanceof Function && key.indexOf('old_') == -1) {
+                    let list = createButtonsFromFunction(TencentVideoTest[key], key);
+                    console.log(" element size " + list.length);
+                    for (let ele of list) {
+                        if (ele != null) {
+                            new_container.appendChild(ele);
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        var onFileChanged = function (input) {
+                console.log(input.files);
+                var reader = new FileReader();
+                var imgURL;
+                reader.onload = function (e) {
+                    imgURL = e.target.result;
+                    console.log(imgURL);
+                    document.getElementById("img1").width = 300;
+                    document.getElementById("img1").height = 300;
+                    document.getElementById("img1").src = imgURL;
+                };
+                reader.readAsDataURL(input.files[0]);
+
+            }
+
+    </script>
+    </style>
+</head>
+
+<body>
+<div style="width:100%; height:auto"> 老接口 OldVersionJsApi</div>
+<div id="old_container" class="container">
+</div>
+<div style="width:100%; height:auto"> 当前接口 JsApiMethod</div>
+<div id="new_container" class="container">
+
+</div>
+<div>
+    输入状态栏背景颜色（白色：#FFFFFFFF）
+    <input type="text" id="color_selector" value="#FFFFFFFF"/>
+    <br/>
+    输入状态栏字体颜色（亮色：1 ；暗色：2）
+    <input type="text" id="text_color_selector" value="1">
+</div>
+<div>
+    image
+    <input type="file" onchange="onFileChanged(this)" accept="image/*" name="image"/> video
+    <input type="file" onchange="onFileChanged(this)" accept="video/*" name="video"/> all
+    <input type="file" onchange="onFileChanged(this)" accept="video/*, image/*" name="all"/>
+
+</div>
+
+<div id="hello_div"></div>
+<div>
+    <img id="img1"
+         src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1545291658&di=711d0e624ac06a3a30af1cda6968e505&src=http://img.pptjia.com/image/20180117/f4b76385a3ccdbac48893cc6418806d5.jpg"
+         width="300" height="200"/>
+    <a href="http://113.107.238.17/dd.myapp.com/16891/91D1D288A4E85DAC08942793455F7A0A.apk">download</a>
+    <br/>
+    <br/>
+    <a href="sms:+8618664900984?body=hello">send sms</a>
+</div>
+</body>
+
+</html>
